@@ -22,12 +22,12 @@ Book.prototype.info = function () {
 }
 
 Book.prototype.readstatustoggle = function () {
+    console.log(this.read);
     this.read = !this.read;
-    console.log("read toggle")
-
 }
 
 Book.prototype.removeBookFromLibrary = function () {
+    console.log(this.libIndex)
     myLibrary.splice(this.libIndex, this.libIndex + 1);
     console.log("book removed");
 }
@@ -41,11 +41,11 @@ Book.prototype.createCard = function() {
 
     let readbutton = document.createElement("button")
     readbutton.textContent = "Read it?"
-    readbutton.addEventListener("click", this.readstatustoggle);
+    readbutton.addEventListener("click", this.readstatustoggle.bind(this));
 
     let deletebutton = document.createElement("button");
     deletebutton.textContent = "Remove book from library";
-    deletebutton.addEventListener("click", this.removeBookFromLibrary);
+    deletebutton.addEventListener("click", this.removeBookFromLibrary.bind(this));
 
     for (let key of Object.keys(this)) {
         console.log(this)
