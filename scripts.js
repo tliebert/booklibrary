@@ -1,6 +1,13 @@
 
 let demobook = new Book("Three Body Problem", "Cixin Lui", "300", true)
-let myLibrary = [demobook]; 
+let demobook2 =
+            {
+                title: "Lies and the Lying Liars", 
+                author: "Al Frankin",
+                pages: "240",
+                read: true
+            }
+let myLibrary = [demobook, demobook2]; 
 
 // Book constructor
 
@@ -14,7 +21,7 @@ function Book(title, author, pages, read) {
 // prototype method additions
 
 Book.prototype.info = function () {
-    return `${this.title} by ${this.author}`
+    return `${this.title} by ${this.author}`;
 }
 
 Book.prototype.readstatus = function () {
@@ -29,12 +36,13 @@ Book.prototype.readstatus = function () {
 // add a single instance of a book to the library 
 
 function addBookToLibrary(title, author, pages, read) {
-    let newbook = new Book(title, author, pages, read);
-    myLibrary.push(newbook);
+    myLibrary.push(new Book(title, author, pages, read));
 }
 
 
-// fetches the submitBook button and runs submitBookForm when it is clicked. 
+// fetches the submitBook button and runs submitBookForm when it is clicked. submitBookForm 
+// gathers values currently in the various input fields and passes them as arguments to 
+// the addBookToLibrary function.  
 
 const submitButton = document.getElementById("submitBook");
 submitButton.addEventListener("click", submitBookForm);
@@ -48,5 +56,35 @@ function submitBookForm (e) {
     console.table(myLibrary);
 }
 
+// take an individual book object and append it to the library div 
+
+const libraryDisplay = document.getElementById("libDisplay")
+
+function displayBookInLibrary (object) {
+    console.log(object)
+    let bookcard = document.createElement("div");
+    let bookinfo = document.createElement("ul");
+    bookcard.classList.add("singleBookCard");
+    for (let key in object) {
+        let listitem = document.createElement("li");
+        switch (object[key]) {
+            case true:
+                listitem.textContent = "Read it!";
+                break;
+            case false: 
+                listitem.textContent = "Need to read!";
+                break;
+            default:
+                listitem.textContent = `${key}: ${object[key]}`;
+            }
+        bookinfo.appendChild(listitem);
+        }
+    bookcard.appendChild(bookinfo)
+    libraryDisplay.appendChild(bookcard);
+    }
+
+// iterate over each book object in the library array and display on page 
+
+myLibrary.forEach(displayBookInLibrary);
 
 
