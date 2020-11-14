@@ -1,4 +1,6 @@
 
+// Main library array with two demo books, one an instance and one a literal
+
 let demobook = new Book("Three Body Problem", "Cixin Lui", "300", true)
 let demobook2 =
             {
@@ -18,19 +20,15 @@ function Book(title, author, pages, read) {
     this.read = true;
     }
 
-// prototype method additions
+// prototype method additions to Book constructor
 
 Book.prototype.info = function () {
     return `${this.title} by ${this.author}`;
 }
 
-Book.prototype.readstatus = function () {
-        if (this.read) {
-            return "has been read";
-        }
-        else {
-            return "not yet read";
-        }
+Book.prototype.readstatustoggle = function () {
+    this.read = !this.read;
+
 }
 
 // add a single instance of a book to the library 
@@ -53,20 +51,28 @@ function submitBookForm (e) {
     let pf = document.getElementById("pages").value;
     let rf = document.getElementById("readstatus").value;
     addBookToLibrary(tf, af, pf, rf);
-    console.table(myLibrary);
 }
 
 // take an individual book object and append it to the library div 
 
 const libraryDisplay = document.getElementById("libDisplay")
 
-function displayBookInLibrary (object) {
-    console.log(object)
+function displayBookInLibrary (object, index) {
+
+    object.arrayIndex = index;
+
     let bookcard = document.createElement("div");
+    bookcard.setAttribute("class", "bookcard");
     let bookinfo = document.createElement("ul");
     bookcard.classList.add("singleBookCard");
+
+    let readbutton = document.createElement("button")
+    readbutton.textContent = "Read it?"
+    readbutton.addEventListener("click", object.readstatustoggle);
+
     for (let key in object) {
         let listitem = document.createElement("li");
+        listitem.setAttribute("class", "bookListItem")
         switch (object[key]) {
             case true:
                 listitem.textContent = "Read it!";
@@ -79,12 +85,22 @@ function displayBookInLibrary (object) {
             }
         bookinfo.appendChild(listitem);
         }
-    bookcard.appendChild(bookinfo)
+
+    bookcard.appendChild(bookinfo);
+    bookcard.appendChild(readbutton);
     libraryDisplay.appendChild(bookcard);
+
     }
 
-// iterate over each book object in the library array and display on page 
+// iterate over the library array and add a book to the library div for each
 
-myLibrary.forEach(displayBookInLibrary);
+function makeLibrary() {
+    let allbookcards = document.querySelectorAll(".bookcard");
+    allbookcards.forEach(node => {
+        libraryDisplay.removeChild(node)
+    })
+    myLibrary.forEach(displayBookInLibrary);
+}
 
+makeLibrary();
 
