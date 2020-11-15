@@ -6,12 +6,18 @@
 </head>
 
 <body>
-    <div id="submitform">
-        <label for="title"><input type="text" name="title" id="title" placeholder="title"></label>
-        <label for="author"><input type="text" name="author" id="author" placeholder="author"></label>
-        <label for="pages"><input type="text" name="pages" id="pages" placeholder="pages"></label>
-        <label for="readstatus"><input type="checkbox" name="readstatus" id="readstatus">Read yet?</label>
-        <button type="submit" id="submitBook">Add book to Library</button>
+    <nav>
+        <h1>My Fun Book Library</h1>
+        <button id="showBookForm">Add Book</button>
+    </nav>
+    <div id="submitform" class="addform">
+        <!--<form action="submit" id="actualForm">-->
+            <label for="title"><input type="text" name="title" id="title" placeholder="title"></label>
+            <label for="author"><input type="text" name="author" id="author" placeholder="author"></label>
+            <label for="pages"><input type="text" name="pages" id="pages" placeholder="pages"></label>
+            <label for="readstatus"><input type="checkbox" name="readstatus" id="readstatus" value=true>Read yet?</label>
+            <button type="submit" id="submitBook">Submit Book</button>
+        <!-- </form> -->
     </div>
     <div id="libDisplay" class="libraryContainer">
 

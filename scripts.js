@@ -12,7 +12,7 @@ function Book(title, author, pages, read) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.read = true;
+    this.read = read;
     }
 
 // prototype method additions to Book constructor
@@ -22,14 +22,14 @@ Book.prototype.info = function () {
 }
 
 Book.prototype.readstatustoggle = function () {
-    console.log(this.read);
     this.read = !this.read;
+    makeLibrary();
 }
 
 Book.prototype.removeBookFromLibrary = function () {
-    console.log(this.libIndex)
-    myLibrary.splice(this.libIndex, this.libIndex + 1);
-    console.log("book removed");
+    console.log(this.libIndex);
+    myLibrary = myLibrary.filter(book => book.libIndex !== this.libIndex)
+    makeLibrary();
 }
 
 Book.prototype.createCard = function() {
@@ -48,7 +48,6 @@ Book.prototype.createCard = function() {
     deletebutton.addEventListener("click", this.removeBookFromLibrary.bind(this));
 
     for (let key of Object.keys(this)) {
-        console.log(this)
         let listitem = document.createElement("li");
         listitem.setAttribute("class", "bookListItem")
         switch (this[key]) {
@@ -83,12 +82,31 @@ function addBookToLibrary(title, author, pages, read) {
 const submitButton = document.getElementById("submitBook");
 submitButton.addEventListener("click", submitBookForm);
 
-function submitBookForm (e) {
+//Add book button that brings up the submit form 
+
+const addBookButton = document.getElementById("showBookForm");
+addBookButton.addEventListener("click", toggleForm);
+
+const submitForm = document.getElementById("submitform");
+
+function toggleForm() {
+    submitForm.classList.add("formvisibility")
+}
+
+function submitBookForm () {
     let tf = document.getElementById("title").value;
     let af = document.getElementById("author").value;
     let pf = document.getElementById("pages").value;
-    let rf = document.getElementById("readstatus").value;
+    let rf = document.getElementById("readstatus").checked ? true : false;
     addBookToLibrary(tf, af, pf, rf);
+    submitForm.classList.remove("formvisibility");
+    resetForm();
+    makeLibrary();
+}
+
+function resetForm () {
+    let allInputs = document.querySelectorAll("input");
+    allInputs.forEach(input => input.value = "");
 }
 
 // take an individual book object and append it to the library div 
@@ -96,8 +114,8 @@ function submitBookForm (e) {
 const libraryDisplay = document.getElementById("libDisplay")
 
 function displayBookInLibrary (book, indexInLibrary) {
-    book.createCard();
     book.libIndex = indexInLibrary;
+    book.createCard();
     }
 
 // iterate over the library array and add a book to the library div for each

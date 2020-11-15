@@ -9,3 +9,11 @@
     width: 90%;
     height: auto;
 }
+
+.addform {
+    visibility: hidden;
+}
+
+.formvisibility {
+    visibility: visible;
+}
