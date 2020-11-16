@@ -90,8 +90,10 @@ addBookButton.addEventListener("click", toggleForm);
 const submitForm = document.getElementById("submitform");
 
 function toggleForm() {
-    submitForm.classList.add("formvisibility")
+    submitForm.classList.toggle("showForm")
 }
+
+// take the current inputs run them through the addBookToLibrary
 
 function submitBookForm () {
     let tf = document.getElementById("title").value;
@@ -99,7 +101,7 @@ function submitBookForm () {
     let pf = document.getElementById("pages").value;
     let rf = document.getElementById("readstatus").checked ? true : false;
     addBookToLibrary(tf, af, pf, rf);
-    submitForm.classList.remove("formvisibility");
+    submitForm.classList.toggle("showForm");
     resetForm();
     makeLibrary();
 }

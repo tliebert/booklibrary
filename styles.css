@@ -10,10 +10,32 @@
     height: auto;
 }
 
-.addform {
-    visibility: hidden;
+.menu {
+    background-color: red;
+    height: 100vh;
+    width: 0;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: .5s;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
-.formvisibility {
-    visibility: visible;
+.menuContent {
+    position: relative;
+    margin-top: 30px;
+}
+
+.showForm {
+    width: 100%;
+}
+
+.menuButton {
+    width: 30%;
 }
