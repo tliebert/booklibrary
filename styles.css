@@ -1,17 +1,52 @@
+:root {
+    background-color: #556052;
+    --main-white: #f2efea;
+    --background-color: #556052;
+    --secondary-background: #af6b58;
+    --lib-background: #cbbcb1;
+    --main-font: 'Montserrat';
+    font-family: "Montserrat";
+}
+
+.topnav {
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+}
+
+.addBook{
+    width: 15vw;    
+    font-size: 25px;
+    border-width: 0px;
+}
+
+.addBook:hover{
+    background-color: var(--secondary-background);
+    color: var(--main-white);
+}
+
 .libraryContainer {
-    background-color: rgba(0, 0, 255, 0.152);
-    width: 100%;
-    height: 80vh;
+    background-color: var(--lib-background);
+    width: auto;
+    padding: 15px 15px 0px 15px;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    justify-content: space-between;
 }
 
 .singleBookCard {
-    background-color: rgba(240, 211, 48, 0.885);
-    width: 90%;
-    height: auto;
+    background-color: var(--secondary-background);
+    color: var(--main-white);
+    margin: 0px 15px 15px 0px;
+    width: auto;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .menu {
-    background-color: red;
+    background-color: #556052;
     height: 100vh;
     width: 0;
     z-index: 1;
@@ -19,12 +54,41 @@
     top: 0;
     left: 0;
     transition: .5s;
+    transition-timing-function: ease-out;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
 
+.menuTextInputs {
+    width: 50vw;
+    height: 25px;
+    background-color: #af6b58;
+}
+
+::placeholder {
+    font-size: 1.5rem;
+    color: #f2efea;
+    font-family: var(--main-font);
+}
+
+ul {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+input {
+    border-color: transparent;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-family: var(--main-font);
+    color: var(--main-white);
+}
+
+input:focus {
+    outline: none;
 }
 
 .menuContent {
@@ -36,6 +100,38 @@
     width: 100%;
 }
 
+.menuCheckbox {
+    height: 25px;
+}
+
+.visuallyhidden {
+    opacity: 0;
+}
+
 .menuButton {
-    width: 30%;
+    width: 50vw;
+    height: 35px;
+    font-size: 25px;
+    border-color: transparent;
+    background-color: var(--secondary-background);
+    color: var(--main-white);
+    border-radius: 10px;
+    font-family: var(--main-font);
+}
+
+.navTextColor {
+    color: var(--lib-background)
+}
+
+button {
+    background-color: var(--lib-background);
+    color: var(--background-color);
+    border-color: var(--background-color);
+    border-style: solid;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: var(--background-color);
+    color: var(--lib-background);
 }

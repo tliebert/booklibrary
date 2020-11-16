@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 <head>
 
 </head>
 
 <body>
-    <nav>
-        <h1>My Fun Book Library</h1>
-        <button id="showBookForm">Add Book</button>
+    <nav id="navbar" class="topnav">
+        <h1 class="navTextColor">Book Library</h1>
+        <button id="showBookForm" class="addBook">Add Book</button>
     </nav>
     <div id="submitform" class="menu">
         <!--<form action="submit" id="actualForm">-->
-            <label for="title">Title<input type="text" name="title" id="title" placeholder="title" class="menuContent"></label>
-            <label for="author"><input type="text" name="author" id="author" placeholder="author" class="menuContent"></label>
-            <label for="pages"><input type="text" name="pages" id="pages" placeholder="pages" class="menuContent"></label>
-            <label for="readstatus"><input type="checkbox" name="readstatus" id="readstatus" value=true class="menuContent">Read yet?</label>
+            <label for="title"><input type="text" name="title" id="title" placeholder="title" class="menuContent menuTextInputs"></label>
+            <label for="author"><input type="text" name="author" id="author" placeholder="author" class="menuContent menuTextInputs"></label>
+            <label for="pages"><input type="text" name="pages" id="pages" placeholder="pages" class="menuContent menuTextInputs"></label>
+            <label for="readstatus" class="menuText"><input type="checkbox" name="readstatus" id="readstatus" value=true class="menuContent menuCheckbox visuallyhidden">Read yet?</label>
             <button type="submit" id="submitBook" class="menuContent menuButton">Submit Book</button>
         <!-- </form> -->
     </div>
