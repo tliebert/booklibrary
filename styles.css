@@ -33,7 +33,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 5px;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .singleBookCard {
@@ -70,13 +70,15 @@
 
 ::placeholder {
     font-size: 1.5rem;
-    color: #f2efea;
+    color: var(--main-white);
     font-family: var(--main-font);
 }
 
 ul {
     margin-block-start: 0em;
     margin-block-end: 0em;
+    list-style-type: none;
+    padding-left: 0px;
 }
 
 input {
@@ -100,8 +102,55 @@ input:focus {
     width: 100%;
 }
 
-.menuCheckbox {
+.checkboxLabel {
     height: 25px;
+    color: var(--main-white);
+    font-size: 1.5rem;
+}
+
+.checkboxLabel .checkboxSpanMagic {
+    position: absolute;
+    top: 0px;
+    left: -10px;
+    height: 24px; 
+    width: 24px;
+    background-color: var(--secondary-background);
+    border-radius: 5px;
+}
+
+.checkboxLabel .checkboxSpanMagic::after {
+    position: absolute;
+    content: "";
+    top: 12px;
+    left: 12px;
+    height: 0px; 
+    width: 0px;
+    border-radius: 5px;
+    border: solid orange; 
+    border-width: 0 0px 3px 0;
+    transform: rotate(0deg) scale(0);
+    opacity: 1;
+}
+
+.checkboxLabel input:checked ~ .checkboxSpanMagic {
+    background-color: var(--secondary-background);
+    border-radius: 5px;
+    transform: rotate(0deg) scale(1.0);
+    opacity: 1;
+    border: 2px solid var(--main-white);
+}
+
+.checkboxLabel input:checked ~ .checkboxSpanMagic::after {
+    transform: rotate(45deg) scale(1);
+    opacity: 1;
+    left: 8px;
+    top: 3px; 
+    width: 6px;
+    height: 12px;
+    border: solid var(--main-white); 
+    border-width: 0 2px 2px 0;
+    background-color: transparent;
+    border-radius: 0;
 }
 
 .visuallyhidden {
@@ -134,4 +183,12 @@ button {
 button:hover {
     background-color: var(--background-color);
     color: var(--lib-background);
+}
+
+button.menuButton:hover {
+    position: relative;
+    top: 5px;
+    background-color: var(--background-color);
+    border: 5px solid var(--main-white);
+    padding-bottom: 30px;
 }

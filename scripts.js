@@ -2,8 +2,8 @@
 
 // Main library array with two demo books, one an instance and one a literal
 
-let demobook = new Book("Three Body Problem", "Cixin Lui", "300", true)
-let demobook2 = new Book("Lies and the Lying Liars", "Al Frankin", "240", true)
+let demobook = new Book("The Three Body Problem", "Liu Cixin", "416", true)
+let demobook2 = new Book("Anna Karenina", "Leo Tolstoy", "864", true)
 let myLibrary = [demobook, demobook2]; 
 
 // Book constructor
@@ -50,18 +50,22 @@ Book.prototype.createCard = function() {
     for (let key of Object.keys(this)) {
         let listitem = document.createElement("li");
         listitem.setAttribute("class", "bookListItem")
-        switch (this[key]) {
-            case true:
+        switch (key) {
+            case "read": if (this[key]) {
                 listitem.textContent = "Read it!";
-                break;
-            case false: 
+            }          else {
                 listitem.textContent = "Need to read!";
-                break;
-            default:
-                listitem.textContent = `${key}: ${this[key]}`;
             }
-        bookinfo.appendChild(listitem);
+            break; 
+            case "title":
+            case "author":
+            case "pages":
+                listitem.textContent = `${key}: ${this[key]}`;
+                break;
+            default: break;
         }
+        bookinfo.appendChild(listitem);
+    }
     bookcard.appendChild(bookinfo);
     bookcard.appendChild(readbutton);
     bookcard.appendChild(deletebutton);
